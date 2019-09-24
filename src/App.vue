@@ -1,21 +1,28 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld 
-      msg="Hello twitch.tv!!!"
-    />
+    <br />
+    <span v-on:click="toggleHeart">
+      <span v-if="liked">🧡</span>
+      <span v-else>🖤</span>
+    </span>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  data() { 
+    return {liked: false}
+  },
+  methods: {
+    toggleHeart: function() {
+      this.liked = !this.liked
+    }
   }
 }
+
 </script>
 
 <style>
