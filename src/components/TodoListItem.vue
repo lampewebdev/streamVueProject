@@ -13,6 +13,9 @@ export default {
     "todoText": String
   },
   methods:{
+    editTodoText: function() {
+      // TODO
+    },
     removeItem: function(){
       this.$emit("removeItem", this.index);
     }

@@ -26,6 +26,7 @@ export default {
     TodoListAddItem
   },
   data: function() {
+    // TODO: Load data from an external API!
     return {
       todoItems: [
         {
@@ -41,7 +42,6 @@ export default {
   },
   methods: {
     onItemAdded: function(todoText) {
-      console.log(uuidv4());
       this.todoItems.push({
         index: uuidv4(),
         todoText
