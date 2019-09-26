@@ -2,13 +2,20 @@
   <div class="todo-list">
     <h1>Todo List</h1>
     <div class="todo-list-items">
-      <TodoListItem v-for="item in todoItems" :key="item.index" :todoText="item.todoText" />
+      <TodoListItem 
+        v-for="item in todoItems" 
+        :key="item.index" 
+        :index="item.index" 
+        :todoText="item.todoText"
+        v-on:removeItem="removeItem"
+      />
     </div>
     <TodoListAddItem v-on:addNewItem="onItemAdded" />
   </div>
 </template>
 
 <script>
+import uuidv4  from 'uuid/v4';
 import TodoListItem from "./TodoListItem";
 import TodoListAddItem from "./TodoListAddItem";
 
@@ -22,11 +29,11 @@ export default {
     return {
       todoItems: [
         {
-          index: 1,
+          index: uuidv4(),
           todoText: `hallo I'm an item`
         },
         {
-          index: 2,
+          index: uuidv4(),
           todoText: `second item!`
         }
       ]
@@ -34,14 +41,17 @@ export default {
   },
   methods: {
     onItemAdded: function(todoText) {
+      console.log(uuidv4());
       this.todoItems.push({
-        index: (this.todoItems.length+1),
+        index: uuidv4(),
         todoText
       });
+    },
+    removeItem: function(index) {
+      this.todoItems = this.todoItems.filter(
+        (todoItem) => todoItem.index !== index
+      )
     }
   }
 };
 </script>
-
-<style>
-</style>
